@@ -12,8 +12,6 @@ Read the gray and color image using imread()
 ### Step2:
 Print the image using imshow().
 
-
-
 ### Step3:
 Use calcHist() function to mark the image in graph frequency for gray and color image.
 
@@ -23,28 +21,60 @@ Use calcHist() function to mark the image in graph frequency for gray and color 
 ### Step5:
 The Histogram of gray scale image and color image is shown.
 
-
 ## Program:
 ```python
-# Developed By: 
-# Register Number: 
+# Developed By: Arunmozhi Varman T
+# Register Number: 212223230022
 
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+grayscale_image = cv2.imread("Screenshot 2025-04-22 141308.png", cv2.IMREAD_GRAYSCALE)
+color_img = cv2.imread("Screenshot 2025-04-22 141308.png")
+gray_hist = cv2.calcHist([grayscale_image], [0], None, [256], [0, 256])
+hist_b = cv2.calcHist([color_img], [0], None, [256], [0, 256])
+hist_g = cv2.calcHist([color_img], [1], None, [256], [0, 256])
+hist_r = cv2.calcHist([color_img], [2], None, [256], [0, 256])
+plt.figure(figsize=(12, 5))
+plt.subplot(1, 2, 1)
+plt.imshow(grayscale_image, cmap='gray')
+plt.title('Grayscale Image')
+plt.axis('off')
+plt.subplot(1, 2, 2)
+plt.imshow(cv2.cvtColor(color_img, cv2.COLOR_BGR2RGB))
+plt.title('Color Image')
+plt.axis('off')
+plt.show()
 
+plt.figure(figsize=(12, 5))
+plt.subplot(1, 2, 1)
+plt.plot(gray_hist, color='black')
+plt.title("Grayscale Image Histogram (Normalized)")
+plt.xlabel("Pixel Intensity")
+plt.ylabel("Normalized Pixel Count")
 
+plt.subplot(1, 2, 2)
+plt.plot(hist_r, color='red')
+plt.plot(hist_b, color='blue')
+plt.plot(hist_g, color='green')
+plt.title("Color Image Histogram (Normalized)")
+plt.xlabel("Pixel Intensity")
+plt.ylabel("Normalized Pixel Count")
 
-
+plt.show()
 
 ```
 ## Output:
 ### Input Grayscale Image and Color Image
+![image](https://github.com/user-attachments/assets/72f54d21-3571-475d-815e-0a7ea3504c22)
 
 
 ### Histogram of Grayscale Image and any channel of Color Image
-
+![image](https://github.com/user-attachments/assets/92cc6d51-6a86-49fe-8f9c-b0ace456011a)
 
 
 ### Histogram Equalization of Grayscale Image.
-
+![image](https://github.com/user-attachments/assets/9eb4641c-fdce-4503-95a0-17c7abda4572)
 
 
 
